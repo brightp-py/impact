@@ -104,7 +104,7 @@ radius = 4.12311
 script = ExtResource("2_yuxtg")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, -2)
 texture = ExtResource("2_0yehh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
