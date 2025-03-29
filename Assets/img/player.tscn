@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://csifu5qptif8x"]
+
+[ext_resource type="Texture2D" uid="uid://cmu02pcamnn66" path="res://Assets/img/isometric room assets 3.png" id="1_touxh"]
+[ext_resource type="Script" uid="uid://c76hwa3mksknk" path="res://Assets/img/player.gd" id="2_yuxtg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuxtg"]
+atlas = ExtResource("1_touxh")
+region = Rect2(194, 200, 97, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yehh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuxtg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_0yehh")
+script = ExtResource("2_yuxtg")
+
+[node name="Collision" type="Node2D" parent="."]
+
+[node name="NE" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(26, -15)
+
+[node name="SE" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(26, 15)
+
+[node name="SW" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(-26, 15)
+
+[node name="NW" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(-26, -15)

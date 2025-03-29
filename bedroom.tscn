@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cnmmse74qrfay"]
+[gd_scene load_steps=17 format=3 uid="uid://cnmmse74qrfay"]
 
 [ext_resource type="Texture2D" uid="uid://dnliaga5bw5tv" path="res://Assets/img/isometric room 1.png" id="1_iw0c1"]
 [ext_resource type="Texture2D" uid="uid://cmu02pcamnn66" path="res://Assets/img/isometric room assets 3.png" id="2_kpde0"]
+[ext_resource type="PackedScene" uid="uid://csifu5qptif8x" path="res://Assets/img/player.tscn" id="3_e18cj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kpde0"]
 load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
@@ -51,40 +52,66 @@ region = Rect2(357.473, 256.721, 25.0218, 20.7808)
 
 [node name="Bedroom" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 54)
+zoom = Vector2(0.4, 0.4)
+
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
 position = Vector2(-44, 0)
 scale = Vector2(8, 8)
 texture = ExtResource("1_iw0c1")
 
 [node name="Desk" type="Sprite2D" parent="Background"]
+z_index = 2
+y_sort_enabled = true
 position = Vector2(-7.75, -15.25)
 texture = SubResource("AtlasTexture_e18cj")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Background/Desk"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Desk/StaticBody2D"]
+polygon = PackedVector2Array(29.5, 4.875, -16.125, 28.625, -34.5, 19.875, 13, -4.875)
+
 [node name="Rug2" type="Sprite2D" parent="Background"]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(30.5, 12.75)
 texture = SubResource("AtlasTexture_ui2oe")
 
 [node name="Sidetable" type="Sprite2D" parent="Background"]
+z_index = 2
+y_sort_enabled = true
 position = Vector2(72.75, 8.875)
 texture = SubResource("AtlasTexture_6d2g4")
 
 [node name="Rug" type="Sprite2D" parent="Background"]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(-36.375, 27.75)
 texture = SubResource("AtlasTexture_j12bj")
 
 [node name="Bookshelf" type="Sprite2D" parent="Background"]
+z_index = 2
+y_sort_enabled = true
 position = Vector2(-90, 13.875)
 texture = SubResource("AtlasTexture_o412v")
 
 [node name="Bed" type="Sprite2D" parent="Background"]
+z_index = 2
+y_sort_enabled = true
 position = Vector2(-14.625, 56.125)
 texture = SubResource("AtlasTexture_4ken1")
 
 [node name="Laptop" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 position = Vector2(-115, -157)
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_dhkfy")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 54)
-zoom = Vector2(0.4, 0.4)
+[node name="Player" parent="." instance=ExtResource("3_e18cj")]
+z_index = 1
+position = Vector2(-606, 131)
+scale = Vector2(8, 8)
