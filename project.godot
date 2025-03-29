@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Impact Game"
-run/main_scene="uid://cnmmse74qrfay"
+run/main_scene="uid://c8te2nsj8slef"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,8 +1,11 @@
 extends Control
 
+signal exit_laptop
+
 # When the email exit button is pressed close this menu
 func _on_exit_button_pressed() -> void:
 	print("Exit button pressed")
+	exit_laptop.emit()
 
 # When the email 1 button is pressed from the list change the text
 func but_email_1_pressed() -> void:

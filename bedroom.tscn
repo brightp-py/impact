@@ -59,126 +59,129 @@ load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb09
 atlas = SubResource("CompressedTexture2D_m2b15")
 region = Rect2(357.473, 256.721, 25.0218, 20.7808)
 
-[node name="Bedroom" type="Node2D"]
+[node name="Room" type="Node2D"]
 y_sort_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 54)
 zoom = Vector2(0.4, 0.4)
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Bedroom" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Background" type="Sprite2D" parent="Bedroom"]
 z_index = -1
 position = Vector2(-44, 0)
 scale = Vector2(8, 8)
 texture = ExtResource("1_iw0c1")
 
-[node name="Desk" type="Sprite2D" parent="Background"]
+[node name="Desk" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 2
 position = Vector2(-7.75, -15.25)
 texture = SubResource("AtlasTexture_e18cj")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Background/Desk"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Bedroom/Background/Desk"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Desk/StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/Desk/StaticBody2D"]
 polygon = PackedVector2Array(29.5, 4.875, 12.375, 14, 17, 17.375, 4.625, 24.25, -1.79353, 21.1648, -16.125, 28.625, -34.5, 19.875, 13, -4.875)
 
-[node name="Rug2" type="Sprite2D" parent="Background"]
+[node name="Rug2" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 1
 position = Vector2(30.5, 12.75)
 texture = SubResource("AtlasTexture_ui2oe")
 
-[node name="Sidetable" type="Sprite2D" parent="Background"]
+[node name="Sidetable" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 2
 position = Vector2(72.75, 8.875)
 texture = SubResource("AtlasTexture_6d2g4")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Background/Sidetable"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bedroom/Background/Sidetable"]
 position = Vector2(-80.5, -24.125)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Sidetable/StaticBody2D2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/Sidetable/StaticBody2D2"]
 polygon = PackedVector2Array(91.5, 33.625, 79, 40.5, 68.375, 35.875, 79, 27.75)
 
-[node name="Rug" type="Sprite2D" parent="Background"]
+[node name="Rug" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 1
 position = Vector2(-36.375, 27.75)
 texture = SubResource("AtlasTexture_j12bj")
 
-[node name="Bookshelf" type="Sprite2D" parent="Background"]
+[node name="Bookshelf" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 2
 position = Vector2(-90, 13.875)
 texture = SubResource("AtlasTexture_o412v")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="Background/Bookshelf"]
+[node name="StaticBody2D4" type="StaticBody2D" parent="Bedroom/Background/Bookshelf"]
 position = Vector2(82.25, -29.125)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Bookshelf/StaticBody2D4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/Bookshelf/StaticBody2D4"]
 polygon = PackedVector2Array(-68.625, 49.25, -93.625, 62.125, -106.5, 55.25, -79.875, 42)
 
-[node name="Bed" type="Sprite2D" parent="Background"]
+[node name="Bed" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 2
 position = Vector2(-14.625, 56.125)
 texture = SubResource("AtlasTexture_4ken1")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Background/Bed"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Bedroom/Background/Bed"]
 position = Vector2(6.875, -71.375)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Bed/StaticBody2D3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/Bed/StaticBody2D3"]
 polygon = PackedVector2Array(40.5, 65.625, -22.75, 98.25, -60.125, 77.375, -0.25, 44.875)
 
-[node name="Mirror" type="Sprite2D" parent="Background"]
+[node name="Mirror" type="Sprite2D" parent="Bedroom/Background"]
 z_index = 2
 position = Vector2(100, 12.375)
 texture = SubResource("AtlasTexture_885xx")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="Background/Mirror"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="Bedroom/Background/Mirror"]
 position = Vector2(6.875, -71.375)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Mirror/StaticBody2D3"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/Mirror/StaticBody2D3"]
 position = Vector2(6.375, 1.125)
 polygon = PackedVector2Array(15.75, 99.375, 2.5, 107.625, -43.375, 82.75, -28.25, 75.25)
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Background"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bedroom/Background"]
 position = Vector2(-7.75, -15.25)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bedroom/Background/StaticBody2D2"]
 polygon = PackedVector2Array(14.25, -5.125, -107.625, 55.875, -145.875, 40.125, 17, -25, 167.875, 59.625, 13.25, 136.875, -152.875, 50.625, -128.5, 45.5, 13.5, 116.25, 133.875, 55.375)
 
-[node name="Laptop" type="Sprite2D" parent="."]
+[node name="Laptop" type="Sprite2D" parent="Bedroom"]
 z_index = 2
 position = Vector2(-115, -157)
 scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_dhkfy")
 
-[node name="Player" parent="." instance=ExtResource("3_e18cj")]
-z_index = 2
-position = Vector2(-499, 397)
-scale = Vector2(8, 8)
-
-[node name="Goose" parent="." instance=ExtResource("5_o412v")]
+[node name="Goose" parent="Bedroom" instance=ExtResource("5_o412v")]
 z_index = 2
 position = Vector2(388, 436)
 scale = Vector2(8, 8)
 
-[node name="InteractBed" parent="." instance=ExtResource("4_ui2oe")]
+[node name="InteractLaptop" parent="Bedroom" instance=ExtResource("4_ui2oe")]
 position = Vector2(45, 78)
 scale = Vector2(6.74, 6.74)
 description = "Press [Space] to Open Laptop"
-interaction = "bed"
+interaction = "laptop"
 
-[node name="InteractLaptop" parent="." instance=ExtResource("4_ui2oe")]
+[node name="InteractBed" parent="Bedroom" instance=ExtResource("4_ui2oe")]
 position = Vector2(-339, 269)
 scale = Vector2(6.74, 6.74)
 description = "Press [Space] to Go to Sleep"
-interaction = "laptop"
+interaction = "bed"
 
-[node name="InteractDoor" parent="." instance=ExtResource("4_ui2oe")]
+[node name="InteractDoor" parent="Bedroom" instance=ExtResource("4_ui2oe")]
 position = Vector2(372, 62)
 scale = Vector2(6.74, 6.74)
 description = "Press [Space] to Go to Work"
 interaction = "door"
 
-[node name="InteractMirror" parent="." instance=ExtResource("4_ui2oe")]
+[node name="InteractMirror" parent="Bedroom" instance=ExtResource("4_ui2oe")]
 position = Vector2(668, 321)
 scale = Vector2(6.74, 6.74)
 description = "Press [Space] to Change"
 interaction = "mirror"
+
+[node name="Player" parent="." instance=ExtResource("3_e18cj")]
+z_index = 2
+position = Vector2(-499, 397)
+scale = Vector2(8, 8)

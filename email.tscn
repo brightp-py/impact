@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dosrug2jwtrh1"]
+[gd_scene load_steps=4 format=3 uid="uid://dosrug2jwtrh1"]
 
 [ext_resource type="Script" uid="uid://d3v41x0633qll" path="res://email.gd" id="1_b7pj5"]
+[ext_resource type="Theme" uid="uid://c7101oo740ak6" path="res://UI/panel_theme.tres" id="2_l5d43"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4565"]
 
 [node name="Email UI" type="Control"]
 layout_mode = 3
@@ -10,7 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b7pj5")
-metadata/_edit_lock_ = true
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -26,9 +28,11 @@ layout_mode = 1
 offset_top = 112.0
 offset_right = 240.0
 offset_bottom = 525.0
+theme = ExtResource("2_l5d43")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Email List Con"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_u4565")
 
 [node name="MarginContainer" type="MarginContainer" parent="Email List Con/ScrollContainer"]
 layout_mode = 2
@@ -59,10 +63,12 @@ theme_override_font_sizes/font_size = 35
 text = "Email 3"
 
 [node name="Details Con" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 240.0
 offset_top = 112.0
 offset_right = 1152.0
 offset_bottom = 525.0
+theme = ExtResource("2_l5d43")
 
 [node name="MarginContainer" type="MarginContainer" parent="Details Con"]
 layout_mode = 2
@@ -100,6 +106,7 @@ offset_top = -123.0
 offset_right = 576.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("2_l5d43")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Choice Con"]
 layout_mode = 2
@@ -135,6 +142,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 111.667
 grow_horizontal = 2
+theme = ExtResource("2_l5d43")
 
 [node name="TitleLabel" type="Label" parent="Title Con"]
 layout_mode = 2
