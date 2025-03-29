@@ -1,0 +1,4 @@
+[gd_resource type="Theme" format=3 uid="uid://kl5uhh07onis"]
+
+[resource]
+Label/colors/font_color = Color(0.11, 0.044, 0, 1)

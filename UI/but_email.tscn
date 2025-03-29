@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://o84ylaso3wp6"]
+
+[ext_resource type="Script" uid="uid://yor5j2r5yoku" path="res://UI/but_email.gd" id="1_qq8cq"]
+
+[node name="But_Email 1" type="Button"]
+offset_right = 330.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 35
+text = "Email 1"
+alignment = 0
+text_overrun_behavior = 3
+script = ExtResource("1_qq8cq")

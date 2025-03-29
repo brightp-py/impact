@@ -153,6 +153,7 @@ scale = Vector2(8, 8)
 texture = SubResource("AtlasTexture_dhkfy")
 
 [node name="Goose" parent="Bedroom" instance=ExtResource("5_o412v")]
+visible = false
 z_index = 2
 position = Vector2(388, 436)
 scale = Vector2(8, 8)

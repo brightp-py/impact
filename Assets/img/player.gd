@@ -59,6 +59,9 @@ func _process(delta):
 			interact()
 	
 		do_animation(moving)
+	
+	else:
+		$Label.visible = false
 
 func check_for_collision(moving: Vector2) -> Vector2:
 	if $Collision/NE.is_colliding():
@@ -90,6 +93,10 @@ func move_away(ray: RayCast2D):
 		position -= ray.target_position * 0.25
 
 func check_for_interaction():
+	if not can_move:
+		$Label.visible = false
+		return
+	
 	var areas: Array[Area2D] = $Area2D.get_overlapping_areas()
 	
 	if areas.size() == 0:
