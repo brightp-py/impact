@@ -1,0 +1,90 @@
+[gd_scene load_steps=16 format=3 uid="uid://cnmmse74qrfay"]
+
+[ext_resource type="Texture2D" uid="uid://dnliaga5bw5tv" path="res://Assets/img/isometric room 1.png" id="1_iw0c1"]
+[ext_resource type="Texture2D" uid="uid://cmu02pcamnn66" path="res://Assets/img/isometric room assets 3.png" id="2_kpde0"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kpde0"]
+load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e18cj"]
+atlas = SubResource("CompressedTexture2D_kpde0")
+region = Rect2(101.558, 7.18949, 79.0263, 77.8974)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e18cj"]
+load_path = "res://.godot/imported/isometric room assets 3.png-0991f21fe79a6056c5580f135ba78bce.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui2oe"]
+atlas = SubResource("CompressedTexture2D_e18cj")
+region = Rect2(32.7108, 232.073, 96.4737, 55.4211)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o412v"]
+load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d2g4"]
+atlas = SubResource("CompressedTexture2D_o412v")
+region = Rect2(64.0163, 304.941, 32.329, 37.9737)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_885xx"]
+load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j12bj"]
+atlas = SubResource("CompressedTexture2D_885xx")
+region = Rect2(198.307, 233.586, 58.7053, 50.2382)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ui2oe"]
+load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o412v"]
+atlas = SubResource("CompressedTexture2D_ui2oe")
+region = Rect2(214.05, 100.413, 65.2892, 80.9917)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ken1"]
+atlas = ExtResource("2_kpde0")
+region = Rect2(210.779, 76.0776, 125.724, 102.118)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_m2b15"]
+load_path = "res://.godot/imported/isometric room assets 4.png-2044099504701fb0959d7ca1ea1b242c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhkfy"]
+atlas = SubResource("CompressedTexture2D_m2b15")
+region = Rect2(357.473, 256.721, 25.0218, 20.7808)
+
+[node name="Bedroom" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(-44, 0)
+scale = Vector2(8, 8)
+texture = ExtResource("1_iw0c1")
+
+[node name="Desk" type="Sprite2D" parent="Background"]
+position = Vector2(-7.75, -15.25)
+texture = SubResource("AtlasTexture_e18cj")
+
+[node name="Rug2" type="Sprite2D" parent="Background"]
+position = Vector2(30.5, 12.75)
+texture = SubResource("AtlasTexture_ui2oe")
+
+[node name="Sidetable" type="Sprite2D" parent="Background"]
+position = Vector2(72.75, 8.875)
+texture = SubResource("AtlasTexture_6d2g4")
+
+[node name="Rug" type="Sprite2D" parent="Background"]
+position = Vector2(-36.375, 27.75)
+texture = SubResource("AtlasTexture_j12bj")
+
+[node name="Bookshelf" type="Sprite2D" parent="Background"]
+position = Vector2(-90, 13.875)
+texture = SubResource("AtlasTexture_o412v")
+
+[node name="Bed" type="Sprite2D" parent="Background"]
+position = Vector2(-14.625, 56.125)
+texture = SubResource("AtlasTexture_4ken1")
+
+[node name="Laptop" type="Sprite2D" parent="."]
+position = Vector2(-115, -157)
+scale = Vector2(8, 8)
+texture = SubResource("AtlasTexture_dhkfy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 54)
+zoom = Vector2(0.4, 0.4)

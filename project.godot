@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="Impact Game"
+run/main_scene="uid://cnmmse74qrfay"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.0808132, 0.122987, 0.135516, 1)
