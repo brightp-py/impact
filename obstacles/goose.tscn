@@ -1,0 +1,119 @@
+[gd_scene load_steps=18 format=3 uid="uid://blhqtsk8r5w1j"]
+
+[ext_resource type="Texture2D" uid="uid://copnb7861a51l" path="res://Assets/img/obstacles/goose/Idle.png" id="1_2rn21"]
+[ext_resource type="Script" uid="uid://cyroyhjkifwwn" path="res://obstacles/goose.gd" id="1_ypgxn"]
+[ext_resource type="Texture2D" uid="uid://cw54qke1v0i20" path="res://Assets/img/obstacles/goose/Flap.png" id="2_ucpy4"]
+[ext_resource type="Texture2D" uid="uid://bhsx6s75sa8iv" path="res://Assets/img/obstacles/goose/Walk.png" id="3_ypgxn"]
+[ext_resource type="PackedScene" uid="uid://bsijwx74s328x" path="res://interact_space.tscn" id="4_ucpy4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmh1n"]
+atlas = ExtResource("1_2rn21")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sc5yl"]
+atlas = ExtResource("1_2rn21")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2g8u"]
+atlas = ExtResource("2_ucpy4")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1wts"]
+atlas = ExtResource("2_ucpy4")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auyec"]
+atlas = ExtResource("2_ucpy4")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc6n3"]
+atlas = ExtResource("2_ucpy4")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st36g"]
+atlas = ExtResource("3_ypgxn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op40s"]
+atlas = ExtResource("3_ypgxn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3x1h"]
+atlas = ExtResource("3_ypgxn")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydhn4"]
+atlas = ExtResource("3_ypgxn")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_othxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmh1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sc5yl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2g8u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1wts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auyec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc6n3")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st36g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op40s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3x1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydhn4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2rn21"]
+radius = 8.0
+
+[node name="Goose" type="Node2D"]
+script = ExtResource("1_ypgxn")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_othxu")
+animation = &"flap"
+autoplay = "default"
+frame_progress = 0.41011
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+sync_to_physics = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_2rn21")
+
+[node name="InteractSpace" parent="." instance=ExtResource("4_ucpy4")]
+position = Vector2(0, -4)
+description = "Press [Space] to Shoo"
+interaction = "goose"

@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://csifu5qptif8x"]
+
+[ext_resource type="Texture2D" uid="uid://1clads4yaiyx" path="res://Assets/img/character.png" id="1_yuxtg"]
+[ext_resource type="Texture2D" uid="uid://cn4vsotklilys" path="res://Assets/img/shadow.png" id="2_0yehh"]
+[ext_resource type="Script" uid="uid://c76hwa3mksknk" path="res://Assets/img/player.gd" id="2_yuxtg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yehh"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2v7s"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0767k"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwnse"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ihn"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2bv5"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1o0f"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hhvu"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmalr"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0atml"]
+atlas = ExtResource("1_yuxtg")
+region = Rect2(288, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yehh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yehh")
+}],
+"loop": true,
+"name": &"face_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2v7s")
+}],
+"loop": true,
+"name": &"face_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_0767k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwnse")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_u2ihn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2bv5")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_u1o0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hhvu")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_qmalr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0atml")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuxtg"]
+radius = 4.12311
+
+[node name="Player" type="Node2D"]
+script = ExtResource("2_yuxtg")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("2_0yehh")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.117647, 0.0431373, 0, 1)
+position = Vector2(0, -27)
+sprite_frames = SubResource("SpriteFrames_0yehh")
+animation = &"walk_up"
+autoplay = "face_down"
+frame_progress = 0.438307
+
+[node name="Collision" type="Node2D" parent="."]
+position = Vector2(0, -36)
+
+[node name="NE" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(26, -15)
+
+[node name="SE" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(26, 15)
+
+[node name="SW" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(-26, 15)
+
+[node name="NW" type="RayCast2D" parent="Collision"]
+position = Vector2(0, 36)
+target_position = Vector2(-26, -15)
+
+[node name="Label" type="Label" parent="."]
+z_index = 50
+offset_left = -56.0
+offset_top = -73.0
+offset_right = 56.0
+offset_bottom = -51.0
+theme_override_font_sizes/font_size = 7
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(13, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-13, -4)
+shape = SubResource("CircleShape2D_yuxtg")
