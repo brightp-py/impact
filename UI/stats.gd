@@ -21,7 +21,8 @@ func ticks_to_time(time_left: float):
 	hours += day_start
 	
 	if hours >= 12:
-		time_of_day = "pm"
+		if hours < 24:
+			time_of_day = "pm"
 		if hours > 12:
 			hours -= 12
 	

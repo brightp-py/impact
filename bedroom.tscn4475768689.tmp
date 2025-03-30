@@ -74,7 +74,6 @@ position = Vector2(0, 54)
 zoom = Vector2(0.4, 0.4)
 
 [node name="Work" type="Node2D" parent="."]
-visible = false
 
 [node name="Button" type="Sprite2D" parent="Work"]
 scale = Vector2(8, 8)
@@ -91,19 +90,8 @@ theme_override_fonts/font = ExtResource("3_4ken1")
 theme_override_font_sizes/font_size = 321
 text = "Work!"
 
-[node name="Label2" type="Label" parent="Work"]
-offset_left = -784.0
-offset_top = 193.0
-offset_right = 791.0
-offset_bottom = 579.0
-theme = ExtResource("2_j12bj")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("3_4ken1")
-theme_override_font_sizes/font_size = 96
-text = "Press [Space] to Return"
-horizontal_alignment = 1
-
 [node name="Bedroom" type="Node2D" parent="."]
+visible = false
 y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="Bedroom"]
@@ -220,6 +208,7 @@ description = "Press [Space] to Change"
 interaction = "mirror"
 
 [node name="Player" parent="." instance=ExtResource("3_e18cj")]
+visible = false
 z_index = 2
 position = Vector2(-500, 400)
 scale = Vector2(8, 8)

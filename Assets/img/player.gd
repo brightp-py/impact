@@ -2,6 +2,8 @@ class_name Player
 extends Node2D
 
 signal open_laptop
+signal go_to_sleep
+signal earn_money(amount: int)
 
 var WALK_SPEED: float = 300.0
 
@@ -11,6 +13,8 @@ var DIR_SE: Vector2 = Vector2.UP.rotated(2*PI/3)
 @export var BUBBLE_RADIUS: float = 10.0
 
 var can_move: bool = true
+var at_work: bool = false
+var working_hard: bool = false
 var direction_last_pressed_was_vertical: bool = true
 var facing_up: bool = false
 
@@ -62,6 +66,21 @@ func _process(delta):
 	
 	else:
 		$Label.visible = false
+		do_animation(Vector2(0, 0))
+		
+		if at_work:
+			var mouse: Vector2 = get_global_mouse_position()
+			if Input.is_action_pressed("click") and mouse.length() < 150.0:
+				working_hard = true
+				get_parent().find_child("Work").find_child("Button").texture.region.position.x = 32.0
+			else:
+				if working_hard:
+					earn_money.emit(1.0)
+				working_hard = false
+				get_parent().find_child("Work").find_child("Button").texture.region.position.x = 0.0
+			
+			if Input.is_action_just_pressed("interact"):
+				return_home()
 
 func check_for_collision(moving: Vector2) -> Vector2:
 	if $Collision/NE.is_colliding():
@@ -122,8 +141,28 @@ func interact():
 	elif space.interaction == "laptop":
 		open_laptop.emit()
 	
+	elif space.interaction == "bed":
+		go_to_sleep.emit()
+	
+	elif space.interaction == "door":
+		go_to_work()
+	
 	elif space.interaction == "goose":
 		space.get_parent().shoo()
+
+func go_to_work():
+	visible = false
+	can_move = false
+	at_work = true
+	get_parent().find_child("Bedroom").visible = false
+	get_parent().find_child("Work").visible = true
+
+func return_home():
+	visible = true
+	can_move = true
+	at_work = false
+	get_parent().find_child("Bedroom").visible = true
+	get_parent().find_child("Work").visible = false
 
 func do_animation(moving: Vector2):
 	if moving.length_squared() == 0:

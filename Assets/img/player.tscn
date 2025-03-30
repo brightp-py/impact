@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://csifu5qptif8x"]
+[gd_scene load_steps=17 format=3 uid="uid://csifu5qptif8x"]
 
 [ext_resource type="Texture2D" uid="uid://1clads4yaiyx" path="res://Assets/img/character.png" id="1_yuxtg"]
 [ext_resource type="Texture2D" uid="uid://cn4vsotklilys" path="res://Assets/img/shadow.png" id="2_0yehh"]
 [ext_resource type="Script" uid="uid://c76hwa3mksknk" path="res://Assets/img/player.gd" id="2_yuxtg"]
+[ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="4_b2v7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yehh"]
 atlas = ExtResource("1_yuxtg")
@@ -136,11 +137,12 @@ target_position = Vector2(-26, -15)
 
 [node name="Label" type="Label" parent="."]
 z_index = 50
-offset_left = -56.0
-offset_top = -73.0
-offset_right = 56.0
-offset_bottom = -51.0
-theme_override_font_sizes/font_size = 7
+offset_left = -119.0
+offset_top = -74.0
+offset_right = 119.0
+offset_bottom = -52.0
+theme_override_fonts/font = ExtResource("4_b2v7s")
+theme_override_font_sizes/font_size = 16
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 2

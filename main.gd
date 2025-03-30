@@ -4,6 +4,8 @@ extends Control
 var player: Player
 
 var warning_timer: float = 0.0
+var state: String = "playing"
+var load_time: float = 0.0
 
 func _ready():
 	player = $SVC/SV/Room/Player
@@ -14,8 +16,23 @@ func _ready():
 	$EmailUI.scam_warning.connect(play_warning)
 	
 	player.open_laptop.connect(open_laptop)
+	player.go_to_sleep.connect(new_day)
+	player.earn_money.connect($EmailPile.add_money)
 
 func _process(delta: float):
+	if state == "sleeping":
+		if not $Black/AnimationPlayer.is_playing():
+			state = "loading"
+			load_time = 3.0
+			load_new_day()
+	
+	elif state == "loading":
+		load_time -= delta
+		if load_time <= 0:
+			state = "playing"
+			$Black/AnimationPlayer.play("fade_out")
+			player.can_move = true
+	
 	$Stats/Warning.visible = false
 	if warning_timer <= 0.0:
 		return
@@ -34,6 +51,20 @@ func open_laptop():
 func close_laptop():
 	$EmailUI.visible = false
 	player.can_move = true
+
+func new_day():
+	$Black/AnimationPlayer.play("fade_in")
+	state = "sleeping"
+	player.return_home()
+	player.can_move = false
+
+func load_new_day():
+	player.position = Vector2(-500, 400)
+	var children = $"EmailUI/VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".get_children()
+	for child in children:
+		child.open_email()
+		$EmailUI.but_delete_pressed()
+	$EmailPile.end_of_day()
 
 func apply_consequences(name: String, paid: bool):
 	

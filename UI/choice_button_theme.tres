@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://bqc3cqemu0so2"]
 
-[ext_resource type="FontFile" uid="uid://dxbstf0pmfqa" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="1_wxagj"]
+[ext_resource type="FontFile" uid="uid://dqt7q8mpykshj" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="1_wxagj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxagj"]
 bg_color = Color(0.87, 0.87, 0.87, 0.760784)

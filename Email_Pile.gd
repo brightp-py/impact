@@ -10,7 +10,7 @@ var deck: Array = []
 var conditional_deck: Dictionary = {}
 
 var day_timer = 0
-var day_time_limit = 210
+var day_time_limit = 150
 var day_number = 1
 
 @export var laptop: Laptop
@@ -26,17 +26,19 @@ func _ready():
 
 func _process(delta):
 	time_left -= delta
+	if time_left < 0:
+		get_parent().new_day()
 
 func start_game():
 	#money = randi_range(4000, 12000)
 	money = 4000
 	emit_signal("money_updated", money)
+	load_email_deck()
 	start_new_day()
 
 func start_new_day():
 	day_timer = 0
 	time_left = day_time_limit
-	load_email_deck()
 	draw_new_emails()
 	#$Timer.start()
 
@@ -95,7 +97,8 @@ func calculate_email_count() -> int:
 
 func draw_new_emails():
 	for i in range(calculate_email_count()):
-		laptop.add_email(deck.pop_front())
+		if deck.size() > 0:
+			laptop.add_email(deck.pop_front())
 	laptop.open_first_email()
 	#if deck.size() == 0:
 		#end_of_day()

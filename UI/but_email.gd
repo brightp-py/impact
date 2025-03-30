@@ -14,9 +14,13 @@ func _ready():
 	choice_container = parent.choice_container
 	pressed.connect(open_email)
 
-func delete():
+func delete(paid: bool):
 	queue_free()
-	email_content.find_child("Heading").text = "Email deleted"
+	if paid:
+		email_content.find_child("Heading").text = "Email accepted"
+	else:
+		email_content.find_child("Heading").text = "Email deleted"
+		
 	email_content.find_child("Description").modulate = "#ffffff88"
 	choice_container.visible = false
 

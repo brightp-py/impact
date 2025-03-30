@@ -15,8 +15,12 @@ func add_email(email_data: Dictionary):
 	but_email.load_from_dict(email_data)
 	$"VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".add_child(but_email)
 
-func open_first_email():
-	$"VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".get_children()[0].open_email()
+func open_first_email() -> bool:
+	var children = $"VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".get_children()
+	if children.size() == 0:
+		return false
+	children[0].open_email()
+	return true
 
 # When the email exit button is pressed close this menu
 func _on_exit_button_pressed() -> void:
@@ -28,7 +32,7 @@ func but_delete_pressed() -> void:
 	#print("Delete button pressed")
 	change_money.emit(current_email.email_data["penalty_money"])
 	consequences.emit(current_email.email_data["signal"], false)
-	current_email.delete()
+	current_email.delete(false)
 
 # On Pay button press
 func but_pay_pressed() -> void:
@@ -37,4 +41,4 @@ func but_pay_pressed() -> void:
 	consequences.emit(current_email.email_data["signal"], true)
 	if current_email.email_data["is_phishing"]:
 		scam_warning.emit()
-	current_email.delete()
+	current_email.delete(true)
