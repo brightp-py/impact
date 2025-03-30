@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8te2nsj8slef"]
+[gd_scene load_steps=17 format=3 uid="uid://c8te2nsj8slef"]
 
 [ext_resource type="PackedScene" uid="uid://cnmmse74qrfay" path="res://bedroom.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://det6dxy7k15ue" path="res://main.gd" id="1_h2yge"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bll4beypdeh80" path="res://UI/stats.gd" id="4_lquwl"]
 [ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="5_7mycd"]
 [ext_resource type="FontFile" uid="uid://dm6e50rmihfnp" path="res://Assets/Fonts/MinimalPixel v2.ttf" id="6_272bh"]
+[ext_resource type="AudioStream" uid="uid://dgqucl7ckai3y" path="res://Assets/Sounds/Coin Click.wav" id="8_5vw27"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0.689923, 0.285328, 0.228901, 1)
@@ -203,6 +204,10 @@ vertical_alignment = 2
 [node name="EmailPile" type="Node" parent="." node_paths=PackedStringArray("laptop")]
 script = ExtResource("4_1bvp3")
 laptop = NodePath("../EmailUI")
+
+[node name="GainMoney" type="AudioStreamPlayer2D" parent="EmailPile"]
+stream = ExtResource("8_5vw27")
+volume_db = 9.517
 
 [node name="Black" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)

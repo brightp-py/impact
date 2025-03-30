@@ -6,6 +6,7 @@ var player: Player
 var warning_timer: float = 0.0
 var state: String = "playing"
 var load_time: float = 0.0
+var game_finished: bool = false
 
 func _ready():
 	player = $SVC/SV/Room/Player
@@ -77,7 +78,7 @@ func load_new_day():
 	for child in children:
 		child.open_email()
 		$EmailUI.but_delete_pressed()
-	$EmailPile.end_of_day()
+	game_finished = not $EmailPile.end_of_day()
 	$SVC/SV/Room/BGMusic.queue_up(7.0)
 
 func apply_consequences(name: String, paid: bool):
@@ -103,3 +104,12 @@ func apply_consequences(name: String, paid: bool):
 	if name == "lottery" and paid:
 		if randf() < 0.05:
 			$EmailPile.fulfill_condition("win_lottery")
+	
+	if name == "animals" and $EmailPile.conditions_fulfilled.has("goose"):
+		if paid:
+			$EmailPile.fulfill_condition("happy_goose")
+		else:
+			$EmailPile.fulfill_condition("angry_goose")
+	
+	if name == "rent" and not paid:
+		$EmailPile.fulfill_condition("ignore_rent")

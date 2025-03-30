@@ -6,9 +6,12 @@ var day_start: float = 8.0
 var day_end: float = 24.0
 
 func _process(delta: float):
-	$Label.text = "$" + str(data.money) + "\n" + ticks_to_time(
+	var text = "$" + str(data.money) + "\n" + ticks_to_time(
 		1.0 - (float(data.time_left) / float(data.day_time_limit))
 	)
+	if get_parent().game_finished:
+		text += "\nGame complete! Thank you for playing!"
+	$Label.text = text
 
 func ticks_to_time(time_left: float):
 	var minutes_in_day: float = 60.0 * (day_end - day_start)

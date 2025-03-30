@@ -84,6 +84,8 @@ func _process(delta):
 			show_interact_label.emit("Press [Space] to Return")
 			var mouse: Vector2 = get_global_mouse_position()
 			if Input.is_action_pressed("click") and mouse.length() < 150.0:
+				if not working_hard:
+					get_parent().find_child("Work").play_sound()
 				working_hard = true
 				get_parent().find_child("Work").find_child("Button").texture.region.position.x = 32.0
 			else:

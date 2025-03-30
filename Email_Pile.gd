@@ -37,16 +37,16 @@ func start_game():
 	load_email_deck()
 	start_new_day()
 
-func start_new_day():
+func start_new_day() -> bool:
 	day_timer = 0
 	time_left = day_time_limit
-	draw_new_emails()
 	if not has_electricity:
 		laptop.lose_wifi()
+	return draw_new_emails()
 
-func end_of_day():
+func end_of_day() -> bool:
 	day_number+= 1
-	start_new_day()
+	return start_new_day()
 
 func load_email_deck():
 	var file_path = "res://data/emails.tsv"
@@ -87,20 +87,19 @@ func load_email_deck():
 				conditional_deck[email["condition"]].append(email)
 
 	file.close()
-	
-	## IMPORTANT: Bring this back when we have a complete set of emails!!!!!
 	deck.shuffle()
-	
-	#deck = deck.slice(0, calculate_email_count())  # Scale emails by day
 
 func calculate_email_count() -> int:
 	return clamp(4 + int(day_number * 0.8), 4, 12)
 
-func draw_new_emails():
+func draw_new_emails() -> bool:
+	if deck.size() == 0:
+		return false
 	for i in range(calculate_email_count()):
 		if deck.size() > 0:
 			laptop.add_email(deck.pop_front())
 	laptop.open_first_email()
+	return true
 
 func fulfill_condition(name: String):
 	conditions_fulfilled.append(name)
@@ -111,3 +110,5 @@ func fulfill_condition(name: String):
 
 func add_money(amount: int):
 	money += amount
+	if amount > 1:
+		$GainMoney.play()

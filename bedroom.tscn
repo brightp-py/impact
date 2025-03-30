@@ -1,12 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://cnmmse74qrfay"]
+[gd_scene load_steps=29 format=3 uid="uid://cnmmse74qrfay"]
 
 [ext_resource type="Texture2D" uid="uid://dkknbwbe0m6hv" path="res://Assets/img/button.png" id="1_6d2g4"]
 [ext_resource type="Texture2D" uid="uid://dnliaga5bw5tv" path="res://Assets/img/isometric room 1.png" id="1_iw0c1"]
+[ext_resource type="Script" uid="uid://dakrs6ha7ktoq" path="res://work.gd" id="1_iwj3i"]
 [ext_resource type="Theme" uid="uid://kl5uhh07onis" path="res://UI/email_text_theme.tres" id="2_j12bj"]
 [ext_resource type="Texture2D" uid="uid://cmu02pcamnn66" path="res://Assets/img/isometric room assets 3.png" id="2_kpde0"]
 [ext_resource type="FontFile" uid="uid://dqt7q8mpykshj" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="3_4ken1"]
 [ext_resource type="PackedScene" uid="uid://csifu5qptif8x" path="res://Assets/img/player.tscn" id="3_e18cj"]
 [ext_resource type="PackedScene" uid="uid://bsijwx74s328x" path="res://interact_space.tscn" id="4_ui2oe"]
+[ext_resource type="AudioStream" uid="uid://bso0xndt4m8wk" path="res://Assets/Sounds/Work Button.wav" id="5_jsdaq"]
 [ext_resource type="PackedScene" uid="uid://blhqtsk8r5w1j" path="res://obstacles/goose.tscn" id="5_o412v"]
 [ext_resource type="AudioStream" uid="uid://c6auolud445mt" path="res://Assets/Sounds/Music/scanjam.mp3" id="9_4ken1"]
 [ext_resource type="Script" uid="uid://c6llgdi7uiglo" path="res://bg_music.gd" id="10_m2b15"]
@@ -77,6 +79,7 @@ zoom = Vector2(0.4, 0.4)
 
 [node name="Work" type="Node2D" parent="."]
 visible = false
+script = ExtResource("1_iwj3i")
 
 [node name="Button" type="Sprite2D" parent="Work"]
 scale = Vector2(8, 8)
@@ -105,6 +108,9 @@ theme_override_fonts/font = ExtResource("3_4ken1")
 theme_override_font_sizes/font_size = 96
 text = "Press [Space] to Return"
 horizontal_alignment = 1
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="Work"]
+stream = ExtResource("5_jsdaq")
 
 [node name="Bedroom" type="Node2D" parent="."]
 y_sort_enabled = true
