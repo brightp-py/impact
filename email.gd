@@ -4,6 +4,7 @@ extends Control
 signal exit_laptop
 signal change_money(amount: int)
 signal consequences(name: String, paid: bool)
+signal scam_warning
 
 var current_email: EmailButton
 
@@ -33,4 +34,6 @@ func but_pay_pressed() -> void:
 	#print("Pay button pressed")
 	change_money.emit(current_email.email_data["reward_money"])
 	consequences.emit(current_email.email_data["signal"], true)
+	if current_email.email_data["is_phishing"]:
+		scam_warning.emit()
 	current_email.delete()

@@ -27,7 +27,8 @@ func _process(delta):
 	time_left -= delta
 
 func start_game():
-	money = randi_range(4000, 12000)
+	#money = randi_range(4000, 12000)
+	money = 4000
 	emit_signal("money_updated", money)
 	start_new_day()
 
@@ -55,7 +56,7 @@ func end_of_day():
 
 
 func load_email_deck():
-	var file_path = "res://data/emails.csv"
+	var file_path = "res://data/emails.tsv"
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
 		push_error("Could not open emails.csv")
@@ -70,7 +71,7 @@ func load_email_deck():
 			is_first = false
 			continue
 
-		var fields = line.split(",")
+		var fields = line.split("\t")
 		if fields.size() >= 8:
 			var email = {
 				"subject": fields[0].strip_edges().lstrip("\"").rstrip("\""),
@@ -89,7 +90,7 @@ func load_email_deck():
 	file.close()
 	
 	## IMPORTANT: Bring this back when we have a complete set of emails!!!!!
-	#deck.shuffle()
+	deck.shuffle()
 	
 	#deck = deck.slice(0, calculate_email_count())  # Scale emails by day
 

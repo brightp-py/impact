@@ -1,10 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8te2nsj8slef"]
+[gd_scene load_steps=10 format=3 uid="uid://c8te2nsj8slef"]
 
 [ext_resource type="PackedScene" uid="uid://cnmmse74qrfay" path="res://bedroom.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://det6dxy7k15ue" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dosrug2jwtrh1" path="res://email.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://cvds7jpmlt60l" path="res://Email_Pile.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bll4beypdeh80" path="res://UI/stats.gd" id="4_lquwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(0.689923, 0.285328, 0.228901, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mycd"]
+bg_color = Color(1, 0.344717, 0.263493, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272bh"]
+bg_color = Color(1, 0.344717, 0.263493, 1)
+
+[sub_resource type="Theme" id="Theme_lquwl"]
+RichTextLabel/colors/default_color = Color(0.93, 0.93, 0.93, 1)
+RichTextLabel/font_sizes/bold_font_size = 56
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/styles/background = SubResource("StyleBoxFlat_7mycd")
+RichTextLabel/styles/fill = SubResource("StyleBoxFlat_272bh")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -66,6 +82,38 @@ theme_override_font_sizes/font_size = 40
 text = "$500
 4:00"
 horizontal_alignment = 2
+
+[node name="Warning" type="Panel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -369.5
+offset_top = 121.0
+offset_right = 369.5
+offset_bottom = 249.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lquwl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Stats/Warning"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -60.0
+offset_right = 359.5
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lquwl")
+bbcode_enabled = true
+text = "WARNING
+Your private information has been leaked!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EmailPile" type="Node" parent="." node_paths=PackedStringArray("laptop")]
 script = ExtResource("4_1bvp3")
