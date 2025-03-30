@@ -1,0 +1,255 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq2taoearmm5p"]
+
+[ext_resource type="Script" uid="uid://2tix088uuqq4" path="res://credits_menu.gd" id="1_nm7lk"]
+[ext_resource type="FontFile" uid="uid://c3coh4qtm3y8" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="2_c1t8d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5rx0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nm7lk"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nm7lk")
+mainMenu_level_path = "res://main_menu.tscn"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.244776, 0.244776, 0.244776, 0.313726)
+
+[node name="Button Con" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+offset_right = 264.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_t5rx0")
+
+[node name="Back Button" type="Button" parent="Button Con"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="Title Con" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 194.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nm7lk")
+
+[node name="Background" type="ColorRect" parent="Title Con"]
+layout_mode = 2
+color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[node name="Label" type="Label" parent="Title Con"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 126
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -632.0
+offset_top = -274.0
+offset_right = 632.0
+offset_bottom = 395.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="Programming" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.192157, 0.807843, 0.909804, 1)
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 42
+text = "Programming"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Programming"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.112
+anchor_right = 1.0
+anchor_bottom = 1.112
+offset_top = -2.71201
+offset_bottom = 192.288
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/Programming/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "Name here"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/Programming/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "Name here"
+
+[node name="UI_UX Design" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.862745, 0.733333, 0, 1)
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 42
+text = "UI/UX Design"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/UI_UX Design"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.112
+anchor_right = 1.0
+anchor_bottom = 1.112
+offset_top = -2.71201
+offset_bottom = 192.288
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/UI_UX Design/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "Brenden Duhaime"
+
+[node name="Sound Design" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.215686, 0.796078, 0.560784, 1)
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 42
+text = "Sound Design"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/Sound Design"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.112
+anchor_right = 1.0
+anchor_bottom = 1.112
+offset_top = -2.71201
+offset_bottom = 192.288
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/Sound Design/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "Name here"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/Sound Design/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "Brenden Duhaime"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 100
+
+[node name="Assets" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.513726, 0.501961, 1, 1)
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 42
+text = "Assets"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.112
+anchor_right = 1.0
+anchor_bottom = 1.112
+offset_top = -2.71201
+offset_bottom = 225.288
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "https://hoodedcrow.itch.io/isometric-pixel-bedroom"
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "https://duckhive.itch.io/goose"
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "https://datagoblin.itch.io/monogram"
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "https://fonts.google.com/specimen/Pixelify+Sans"
+
+[node name="Label5" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "text here"
+
+[node name="Label6" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer2/Assets/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_c1t8d")
+theme_override_font_sizes/font_size = 26
+text = "text here"
+
+[connection signal="mouse_entered" from="Button Con/Back Button" to="." method="back_button_mouse_entered"]
+[connection signal="pressed" from="Button Con/Back Button" to="." method="back_button_pressed"]
