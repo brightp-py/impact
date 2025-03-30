@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm5ymxhjguvfn"]
+[gd_scene load_steps=5 format=3 uid="uid://bm5ymxhjguvfn"]
 
 [ext_resource type="AudioStream" uid="uid://bd0jawjikqn4y" path="res://Assets/Sounds/Click Button.wav" id="1_38s0i"]
 [ext_resource type="Script" uid="uid://dgnjjfjv41446" path="res://sound_fx.gd" id="1_nrvls"]
 [ext_resource type="AudioStream" uid="uid://bigkjyrjlqse3" path="res://Assets/Sounds/Hover Button.wav" id="2_xjuyq"]
+[ext_resource type="AudioStream" uid="uid://dgqucl7ckai3y" path="res://Assets/Sounds/Coin Click.wav" id="4_7kgid"]
 
 [node name="SoundFx" type="Node"]
 script = ExtResource("1_nrvls")
@@ -12,3 +13,6 @@ stream = ExtResource("1_38s0i")
 
 [node name="Hover Button" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_xjuyq")
+
+[node name="Coin Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7kgid")
