@@ -1,14 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://dosrug2jwtrh1"]
+[gd_scene load_steps=18 format=3 uid="uid://dosrug2jwtrh1"]
 
 [ext_resource type="Script" uid="uid://d3v41x0633qll" path="res://email.gd" id="1_b7pj5"]
 [ext_resource type="Theme" uid="uid://c7101oo740ak6" path="res://UI/panel_theme.tres" id="2_l5d43"]
 [ext_resource type="Script" uid="uid://cn1nvl12rqivi" path="res://button_side_bar.gd" id="3_710lg"]
+[ext_resource type="Texture2D" uid="uid://67artyfexr7u" path="res://Assets/img/email_header.png" id="3_ylg70"]
+[ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="4_d56f8"]
 [ext_resource type="Theme" uid="uid://kl5uhh07onis" path="res://UI/email_text_theme.tres" id="5_vj7p1"]
+[ext_resource type="Theme" uid="uid://bqc3cqemu0so2" path="res://UI/choice_button_theme.tres" id="5_ylg70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d56f8"]
+atlas = ExtResource("3_ylg70")
+region = Rect2(0, 0, 441.24, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6h618"]
+texture = SubResource("AtlasTexture_d56f8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6h618"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rftt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dj8t0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rafew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d56f8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u4565"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj7p1"]
 bg_color = Color(0.843184, 0.843184, 0.843184, 0.945098)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d56f8"]
+bg_color = Color(0.887249, 0.287496, 0.317478, 0.701961)
 
 [node name="Email UI" type="Control"]
 layout_mode = 3
@@ -20,6 +43,7 @@ grow_vertical = 2
 script = ExtResource("1_b7pj5")
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,18 +52,53 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.196078)
 
-[node name="Email List Con" type="PanelContainer" parent="."]
+[node name="VBox" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_top = 112.0
-offset_right = 240.0
-offset_bottom = 525.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Title Con" type="PanelContainer" parent="VBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("2_l5d43")
+theme_override_styles/panel = SubResource("StyleBoxTexture_6h618")
+
+[node name="ExitButton" type="Button" parent="VBox/Title Con"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_hover_pressed_color = Color(0.52549, 0.52549, 0.52549, 1)
+theme_override_colors/font_hover_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.52549, 0.52549, 0.52549, 1)
+theme_override_colors/font_pressed_color = Color(0.52549, 0.52549, 0.52549, 1)
+theme_override_fonts/font = ExtResource("4_d56f8")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6h618")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rftt7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dj8t0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rafew")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d56f8")
+text = "X"
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Email List Con" type="PanelContainer" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_l5d43")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Email List Con"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox/HBox/Email List Con"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_u4565")
 
-[node name="MarginContainer" type="MarginContainer" parent="Email List Con/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBox/HBox/Email List Con/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -48,44 +107,49 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Buttons" type="VBoxContainer" parent="Email List Con/ScrollContainer/MarginContainer" node_paths=PackedStringArray("email_content", "choice_container")]
+[node name="Buttons" type="VBoxContainer" parent="VBox/HBox/Email List Con/ScrollContainer/MarginContainer" node_paths=PackedStringArray("email_content", "choice_container")]
 layout_mode = 2
 script = ExtResource("3_710lg")
-email_content = NodePath("../../../../Details Con/MarginContainer/Email")
-choice_container = NodePath("../../../../Choice Con/HBoxContainer")
+email_content = NodePath("../../../../VBoxContainer/Details Con/MarginContainer/Email")
+choice_container = NodePath("../../../../VBoxContainer/Choice Con/HBoxContainer")
 
-[node name="Details Con" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_left = 240.0
-offset_top = 112.0
-offset_right = 1152.0
-offset_bottom = 525.0
+[node name="VBoxContainer" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.11
+theme_override_constants/separation = 0
+
+[node name="Details Con" type="PanelContainer" parent="VBox/HBox/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.54
 theme = ExtResource("2_l5d43")
 theme_override_styles/panel = SubResource("StyleBoxFlat_vj7p1")
 
-[node name="MarginContainer" type="MarginContainer" parent="Details Con"]
+[node name="MarginContainer" type="MarginContainer" parent="VBox/HBox/VBoxContainer/Details Con"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Email" type="VBoxContainer" parent="Details Con/MarginContainer"]
+[node name="Email" type="VBoxContainer" parent="VBox/HBox/VBoxContainer/Details Con/MarginContainer"]
 layout_mode = 2
 
-[node name="Heading" type="Label" parent="Details Con/MarginContainer/Email"]
+[node name="Heading" type="RichTextLabel" parent="VBox/HBox/VBoxContainer/Details Con/MarginContainer/Email"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
 theme = ExtResource("5_vj7p1")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
 text = "Heading"
 
-[node name="Description" type="Label" parent="Details Con/MarginContainer/Email"]
+[node name="Description" type="RichTextLabel" parent="VBox/HBox/VBoxContainer/Details Con/MarginContainer/Email"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("5_vj7p1")
-theme_override_font_sizes/font_size = 26
 text = "Email description goes here.
 2
 3
@@ -96,72 +160,29 @@ text = "Email description goes here.
 8"
 autowrap_mode = 2
 
-[node name="Choice Con" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -123.0
-offset_right = 576.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Choice Con" type="PanelContainer" parent="VBox/HBox/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_l5d43")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Choice Con"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBox/HBox/VBoxContainer/Choice Con"]
 layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="AR_Delete" type="AspectRatioContainer" parent="Choice Con/HBoxContainer"]
+[node name="But_Delete" type="Button" parent="VBox/HBox/VBoxContainer/Choice Con/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="But_Delete" type="Button" parent="Choice Con/HBoxContainer/AR_Delete"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+size_flags_horizontal = 3
+theme = ExtResource("5_ylg70")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d56f8")
 text = "Delete"
 
-[node name="VSeparator" type="VSeparator" parent="Choice Con/HBoxContainer"]
+[node name="But_Pay" type="Button" parent="VBox/HBox/VBoxContainer/Choice Con/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="AR_Pay" type="AspectRatioContainer" parent="Choice Con/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="But_Pay" type="Button" parent="Choice Con/HBoxContainer/AR_Pay"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+size_flags_horizontal = 3
+theme = ExtResource("5_ylg70")
 text = "Pay"
 
-[node name="Title Con" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 111.667
-grow_horizontal = 2
-theme = ExtResource("2_l5d43")
-
-[node name="TitleLabel" type="Label" parent="Title Con"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("5_vj7p1")
-theme_override_font_sizes/font_size = 80
-text = "EMAIL"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitButton" type="Button" parent="Title Con"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 40
-text = "Exit Email"
-
-[connection signal="pressed" from="Choice Con/HBoxContainer/AR_Delete/But_Delete" to="." method="but_delete_pressed"]
-[connection signal="pressed" from="Choice Con/HBoxContainer/AR_Pay/But_Pay" to="." method="but_pay_pressed"]
-[connection signal="pressed" from="Title Con/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBox/Title Con/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="VBox/HBox/VBoxContainer/Choice Con/HBoxContainer/But_Delete" to="." method="but_delete_pressed"]
+[connection signal="pressed" from="VBox/HBox/VBoxContainer/Choice Con/HBoxContainer/But_Pay" to="." method="but_pay_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgnxlf746qi3i"]
 
-[ext_resource type="Script" uid="uid://yhrt0am7tg3o" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_06t4h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
 
@@ -70,6 +70,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 194.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rhts7")
 
 [node name="Background" type="ColorRect" parent="Title Con"]

@@ -1,10 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://o84ylaso3wp6"]
+[gd_scene load_steps=8 format=3 uid="uid://o84ylaso3wp6"]
 
+[ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="1_cpbqh"]
 [ext_resource type="Script" uid="uid://yor5j2r5yoku" path="res://UI/but_email.gd" id="1_qq8cq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dg525"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da4uk"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a37ds"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4fyd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_qq8cq"]
+Button/colors/font_color = Color(0.103744, 0.103743, 0.103744, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_cpbqh")
+Button/styles/focus = SubResource("StyleBoxFlat_dg525")
+Button/styles/hover = SubResource("StyleBoxFlat_da4uk")
+Button/styles/normal = SubResource("StyleBoxEmpty_a37ds")
+Button/styles/pressed = SubResource("StyleBoxFlat_g4fyd")
 
 [node name="But_Email 1" type="Button"]
 offset_right = 330.0
 offset_bottom = 57.0
+theme = SubResource("Theme_qq8cq")
 theme_override_font_sizes/font_size = 35
 text = "Email 1"
 alignment = 0

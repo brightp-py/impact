@@ -10,6 +10,9 @@ var right: bool = true
 var moving: bool = false
 
 func _process(delta):
+	if not visible:
+		return
+	
 	time_until_check -= delta
 	
 	if flap_time > 0:

@@ -7,6 +7,7 @@ var time_left: float = 0.0
 var game_over: bool = false
 var current_email: Dictionary = {}
 var deck: Array = []
+var conditional_deck: Dictionary = {}
 
 var day_timer = 0
 var day_time_limit = 210
@@ -43,17 +44,6 @@ func end_of_day():
 	day_number+= 1
 	start_new_day()
 
-#func _on_Timer_timeout():
-	#if game_over:
-		#return
-#
-	#time_left -= 1
-	#day_timer += 1
-	#emit_signal("time_updated", time_left)
-#
-	#if time_left <= 0 or day_timer >= day_time_limit:
-		#fail_due_to_time()
-
 
 func load_email_deck():
 	var file_path = "res://data/emails.tsv"
@@ -83,9 +73,15 @@ func load_email_deck():
 				"difficulty": fields[6].strip_edges(),
 				"length": fields[7].strip_edges().to_lower(),
 				"signal": fields[8].strip_edges().lstrip("\"").rstrip("\""),
-				"action": fields[9].strip_edges().lstrip("\"").rstrip("\"")
+				"action": fields[9].strip_edges().lstrip("\"").rstrip("\""),
+				"condition": fields[10].strip_edges().lstrip("\"").rstrip("\"")
 			}
-			deck.append(email)
+			if email["condition"] == "":
+				deck.append(email)
+			else:
+				if not conditional_deck.has(email["condition"]):
+					conditional_deck[email["condition"]] = []
+				conditional_deck[email["condition"]].append(email)
 
 	file.close()
 	
@@ -107,6 +103,12 @@ func draw_new_emails():
 #
 	#current_email = deck.pop_front()
 	#emit_signal("email_loaded", current_email)
+
+func fulfill_condition(name: String):
+	if not conditional_deck.has(name):
+		return
+	deck.append_array(conditional_deck[name])
+	deck.shuffle()
 
 # --- Decision Logic ---
 func make_decision(is_phishing_guess: bool):

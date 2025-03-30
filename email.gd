@@ -10,12 +10,13 @@ var current_email: EmailButton
 
 # Add a new email option on the left side
 func add_email(email_data: Dictionary):
-	var but_email: EmailButton = EmailButton.new()
+	const email_button_obj = preload("res://UI/but_email.tscn")
+	var but_email: EmailButton = email_button_obj.instantiate()
 	but_email.load_from_dict(email_data)
-	$"Email List Con/ScrollContainer/MarginContainer/Buttons".add_child(but_email)
+	$"VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".add_child(but_email)
 
 func open_first_email():
-	$"Email List Con/ScrollContainer/MarginContainer/Buttons".get_children()[0].open_email()
+	$"VBox/HBox/Email List Con/ScrollContainer/MarginContainer/Buttons".get_children()[0].open_email()
 
 # When the email exit button is pressed close this menu
 func _on_exit_button_pressed() -> void:

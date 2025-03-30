@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=3 format=3 uid="uid://c7101oo740ak6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1gqq"]
-bg_color = Color(0.811765, 0.811765, 0.811765, 0.431373)
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wp15"]
-bg_color = Color(0.952941, 0.952941, 0.952941, 0.529412)
+bg_color = Color(0.95, 0.95, 0.95, 1)
 
 [resource]
 Panel/styles/panel = SubResource("StyleBoxFlat_p1gqq")

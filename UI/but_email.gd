@@ -9,7 +9,7 @@ var email_data: Dictionary
 
 func _ready():
 	var parent = get_parent()
-	laptop = get_parent().get_parent().get_parent().get_parent().get_parent()
+	laptop = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 	email_content = parent.email_content
 	choice_container = parent.choice_container
 	pressed.connect(open_email)
@@ -29,6 +29,6 @@ func open_email():
 	email_content.find_child("Description").modulate = "#ffffffff"
 	email_content.find_child("Heading").text = email_data["subject"]
 	email_content.find_child("Description").text = email_data["content"]
-	choice_container.find_child("AR_Pay").find_child("But_Pay").text = email_data["action"]
+	choice_container.find_child("But_Pay").text = email_data["action"]
 	
 	laptop.current_email = self

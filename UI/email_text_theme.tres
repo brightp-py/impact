@@ -1,4 +1,19 @@
-[gd_resource type="Theme" format=3 uid="uid://kl5uhh07onis"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://kl5uhh07onis"]
+
+[ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="1_c8wqm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8wqm"]
+bg_color = Color(0.123494, 0.564138, 0.67526, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p3pk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrb30"]
 
 [resource]
 Label/colors/font_color = Color(0.11, 0.044, 0, 1)
+RichTextLabel/colors/default_color = Color(0.00820202, 0.00820202, 0.00820202, 1)
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("1_c8wqm")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_c8wqm")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_3p3pk")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_yrb30")
