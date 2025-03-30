@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8te2nsj8slef"]
+[gd_scene load_steps=16 format=3 uid="uid://c8te2nsj8slef"]
 
 [ext_resource type="PackedScene" uid="uid://cnmmse74qrfay" path="res://bedroom.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://det6dxy7k15ue" path="res://main.gd" id="1_h2yge"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cvds7jpmlt60l" path="res://Email_Pile.gd" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bll4beypdeh80" path="res://UI/stats.gd" id="4_lquwl"]
 [ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="5_7mycd"]
+[ext_resource type="FontFile" uid="uid://dm6e50rmihfnp" path="res://Assets/Fonts/MinimalPixel v2.ttf" id="6_272bh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
 bg_color = Color(0.689923, 0.285328, 0.228901, 1)
@@ -24,21 +25,6 @@ RichTextLabel/fonts/normal_font = ExtResource("5_7mycd")
 RichTextLabel/styles/background = SubResource("StyleBoxFlat_7mycd")
 RichTextLabel/styles/fill = SubResource("StyleBoxFlat_272bh")
 
-[sub_resource type="Animation" id="Animation_7mycd"]
-resource_name = "fade_in"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Black:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_272bh"]
 length = 0.001
 tracks/0/type = "value"
@@ -52,6 +38,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7mycd"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Black:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5vw27"]
@@ -97,7 +98,9 @@ stretch = true
 [node name="SV" type="SubViewport" parent="SVC"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(1920, 1080)
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(1536, 864)
 render_target_update_mode = 4
 
 [node name="Room" parent="SVC/SV" instance=ExtResource("1_0xm2m")]
@@ -130,17 +133,16 @@ data = NodePath("../EmailPile")
 
 [node name="Label" type="Label" parent="Stats"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 13
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -46.0
-offset_top = -139.0
-offset_right = 46.0
-offset_bottom = -24.3333
+offset_left = -36.0
+offset_top = 53.0
+offset_right = 36.0
+offset_bottom = -725.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_7mycd")
 theme_override_font_sizes/font_size = 48
 text = "$500
@@ -178,6 +180,25 @@ text = "WARNING
 Your private information has been leaked!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="InteractLabel" type="Label" parent="Stats"]
+z_index = 50
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -720.0
+offset_top = 765.0
+offset_right = 720.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_272bh")
+theme_override_font_sizes/font_size = 28
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="EmailPile" type="Node" parent="." node_paths=PackedStringArray("laptop")]
 script = ExtResource("4_1bvp3")

@@ -42,3 +42,7 @@ func but_pay_pressed() -> void:
 	if current_email.email_data["is_phishing"]:
 		scam_warning.emit()
 	current_email.delete(true)
+
+func lose_wifi():
+	$"VBox/HBox".visible = false
+	$"VBox/Connection Con".visible = true

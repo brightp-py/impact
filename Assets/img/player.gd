@@ -4,6 +4,8 @@ extends Node2D
 signal open_laptop
 signal go_to_sleep
 signal earn_money(amount: int)
+signal show_interact_label(text: String)
+signal hide_interact_label
 
 var WALK_SPEED: float = 300.0
 
@@ -12,6 +14,16 @@ var DIR_SE: Vector2 = Vector2.UP.rotated(2*PI/3)
 
 @export var BUBBLE_RADIUS: float = 10.0
 
+var COLORS: Array = [
+	"#1e0b00",
+	"#080621",
+	"#01180e",
+	"#29293f",
+	"#3e001b",
+	"#321c00"
+]
+
+var color_ind: int = 0
 var can_move: bool = true
 var at_work: bool = false
 var working_hard: bool = false
@@ -65,10 +77,11 @@ func _process(delta):
 		do_animation(moving)
 	
 	else:
-		$Label.visible = false
+		#$Label.visible = false
 		do_animation(Vector2(0, 0))
 		
 		if at_work:
+			show_interact_label.emit("Press [Space] to Return")
 			var mouse: Vector2 = get_global_mouse_position()
 			if Input.is_action_pressed("click") and mouse.length() < 150.0:
 				working_hard = true
@@ -81,6 +94,14 @@ func _process(delta):
 			
 			if Input.is_action_just_pressed("interact"):
 				return_home()
+			
+		else:
+			hide_interact_label.emit()
+	
+	#$Sprite.position = Vector2(0, -27) - Vector2(
+		#fmod(position.x, 8.0),
+		#fmod(position.y, 8.0)
+	#)
 
 func check_for_collision(moving: Vector2) -> Vector2:
 	if $Collision/NE.is_colliding():
@@ -113,18 +134,21 @@ func move_away(ray: RayCast2D):
 
 func check_for_interaction():
 	if not can_move:
-		$Label.visible = false
+		hide_interact_label.emit()
+		#$Label.visible = false
 		return
 	
 	var areas: Array[Area2D] = $Area2D.get_overlapping_areas()
 	
 	if areas.size() == 0:
-		$Label.visible = false
+		hide_interact_label.emit()
+		#$Label.visible = false
 		return
 	
 	var space: InteractSpace = areas[0]
-	$Label.text = space.description
-	$Label.visible = true
+	show_interact_label.emit(space.description)
+	#$Label.text = space.description
+	#$Label.visible = true
 
 func interact():
 	var areas: Array[Area2D] = $Area2D.get_overlapping_areas()
@@ -136,7 +160,11 @@ func interact():
 	var space: InteractSpace = areas[0]
 	
 	if space.interaction == "mirror":
-		$Sprite.modulate = "#231242"
+		#$Sprite.modulate = "#231242"
+		color_ind += 1
+		if color_ind >= COLORS.size():
+			color_ind = 0
+		$Sprite.modulate = COLORS[color_ind]
 	
 	elif space.interaction == "laptop":
 		open_laptop.emit()
@@ -168,16 +196,20 @@ func do_animation(moving: Vector2):
 	if moving.length_squared() == 0:
 		if Input.is_action_pressed("up"):
 			facing_up = true
-			$Sprite.scale.x = -1.0
+			$Sprite.flip_h = true
+			#$Sprite.scale.x = -1.0
 		if Input.is_action_pressed("left"):
 			facing_up = true
-			$Sprite.scale.x = 1.0
+			$Sprite.flip_h = false
+			#$Sprite.scale.x = 1.0
 		if Input.is_action_pressed("down"):
 			facing_up = false
-			$Sprite.scale.x = 1.0
+			$Sprite.flip_h = false
+			#$Sprite.scale.x = 1.0
 		if Input.is_action_pressed("right"):
 			facing_up = false
-			$Sprite.scale.x = -1.0
+			$Sprite.flip_h = true
+			#$Sprite.scale.x = -1.0
 		if facing_up:
 			$Sprite.play("face_up")
 		else:
@@ -188,7 +220,8 @@ func do_animation(moving: Vector2):
 			$Sprite.play("walk_up")
 		else:
 			$Sprite.play("walk_down")
-		if moving[0] > 0 or moving[1] > 0:
-			$Sprite.scale.x = -1.0
-		else:
-			$Sprite.scale.x = 1.0
+		$Sprite.flip_h = moving[0] > 0 or moving[1] > 0
+		#if moving[0] > 0 or moving[1] > 0:
+			#$Sprite.scale.x = -1.0
+		#else:
+			#$Sprite.scale.x = 1.0

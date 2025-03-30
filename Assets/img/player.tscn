@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://1clads4yaiyx" path="res://Assets/img/character.png" id="1_yuxtg"]
 [ext_resource type="Texture2D" uid="uid://cn4vsotklilys" path="res://Assets/img/shadow.png" id="2_0yehh"]
 [ext_resource type="Script" uid="uid://c76hwa3mksknk" path="res://Assets/img/player.gd" id="2_yuxtg"]
-[ext_resource type="FontFile" uid="uid://dqwr6sekef2u2" path="res://Assets/Fonts/monogram.ttf" id="4_b2v7s"]
+[ext_resource type="FontFile" uid="uid://dm6e50rmihfnp" path="res://Assets/Fonts/MinimalPixel v2.ttf" id="4_b2v7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yehh"]
 atlas = ExtResource("1_yuxtg")
@@ -102,6 +102,7 @@ animations = [{
 radius = 4.12311
 
 [node name="Player" type="Node2D"]
+scale = Vector2(8, 8)
 script = ExtResource("2_yuxtg")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -135,14 +136,15 @@ target_position = Vector2(-26, 15)
 position = Vector2(0, 36)
 target_position = Vector2(-26, -15)
 
-[node name="Label" type="Label" parent="."]
+[node name="InteractLabel" type="Label" parent="."]
+visible = false
 z_index = 50
 offset_left = -119.0
 offset_top = -74.0
 offset_right = 119.0
 offset_bottom = -52.0
 theme_override_fonts/font = ExtResource("4_b2v7s")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 6
 text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 2

@@ -5,12 +5,14 @@ extends Node
 var money: int = 0
 var time_left: float = 0.0
 var game_over: bool = false
+var has_electricity: bool = true
 var current_email: Dictionary = {}
 var deck: Array = []
+var conditions_fulfilled = []
 var conditional_deck: Dictionary = {}
 
 var day_timer = 0
-var day_time_limit = 150
+var day_time_limit = 140
 var day_number = 1
 
 @export var laptop: Laptop
@@ -30,7 +32,6 @@ func _process(delta):
 		get_parent().new_day()
 
 func start_game():
-	#money = randi_range(4000, 12000)
 	money = 4000
 	emit_signal("money_updated", money)
 	load_email_deck()
@@ -40,12 +41,12 @@ func start_new_day():
 	day_timer = 0
 	time_left = day_time_limit
 	draw_new_emails()
-	#$Timer.start()
+	if not has_electricity:
+		laptop.lose_wifi()
 
 func end_of_day():
 	day_number+= 1
 	start_new_day()
-
 
 func load_email_deck():
 	var file_path = "res://data/emails.tsv"
@@ -100,69 +101,13 @@ func draw_new_emails():
 		if deck.size() > 0:
 			laptop.add_email(deck.pop_front())
 	laptop.open_first_email()
-	#if deck.size() == 0:
-		#end_of_day()
-		#return
-#
-	#current_email = deck.pop_front()
-	#emit_signal("email_loaded", current_email)
 
 func fulfill_condition(name: String):
+	conditions_fulfilled.append(name)
 	if not conditional_deck.has(name):
 		return
 	deck.append_array(conditional_deck[name])
 	deck.shuffle()
 
-# --- Decision Logic ---
-func make_decision(is_phishing_guess: bool):
-	if current_email == {}:
-		return
-
-	var email_value = 0
-
-	if is_phishing_guess == current_email["is_phishing"]:
-		email_value = current_email["reward_money"]
-	else:
-		email_value = current_email["penalty_money"]
-		time_left -= current_email["penalty_time"]
-
-	money += email_value
-	emit_signal("money_updated", money)
-	emit_signal("time_updated", time_left)
-
-	if money <= 0:
-		end_game("You ran out of money.")
-	elif time_left <= 0:
-		fail_due_to_time()
-	#else:
-		#draw_next_email()
-
-# --- Fail Conditions ---
-func fail_due_to_time():
-	if deck.size() > 0:
-		end_game("You failed to finish your emails in time.")
-	else:
-		end_of_day()
-
-func end_game(reason: String = "Game Over"):
-	game_over = true
-	#$Timer.stop()
-	emit_signal("game_failed", reason)
-
-# --- Bill Payment Handling ---
 func add_money(amount: int):
 	money += amount
-
-func pay_bill():
-	if current_email != {} and current_email["is_phishing"] == false:
-		var bill_amount = randi_range(200, 600)
-		money -= bill_amount
-		emit_signal("money_updated", money)
-		if money <= 0:
-			end_game("You paid too many bills and ran out of money.")
-		#else:
-			#draw_next_email()
-
-func skip_bill():
-	#draw_next_email()
-	pass

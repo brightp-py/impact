@@ -18,6 +18,11 @@ func _ready():
 	player.open_laptop.connect(open_laptop)
 	player.go_to_sleep.connect(new_day)
 	player.earn_money.connect($EmailPile.add_money)
+	player.show_interact_label.connect(show_interact_label)
+	player.hide_interact_label.connect(hide_interact_label)
+	
+	$SVC/SV/Room/BGMusic.queue_up(7.0)
+	$Black/AnimationPlayer.play("fade_out")
 
 func _process(delta: float):
 	if state == "sleeping":
@@ -52,11 +57,19 @@ func close_laptop():
 	$EmailUI.visible = false
 	player.can_move = true
 
+func show_interact_label(text: String):
+	$Stats/InteractLabel.text = text
+	$Stats/InteractLabel.visible = true
+
+func hide_interact_label():
+	$Stats/InteractLabel.visible = false
+
 func new_day():
 	$Black/AnimationPlayer.play("fade_in")
 	state = "sleeping"
 	player.return_home()
 	player.can_move = false
+	$SVC/SV/Room/BGMusic.fade_out(0.5)
 
 func load_new_day():
 	player.position = Vector2(-500, 400)
@@ -65,6 +78,7 @@ func load_new_day():
 		child.open_email()
 		$EmailUI.but_delete_pressed()
 	$EmailPile.end_of_day()
+	$SVC/SV/Room/BGMusic.queue_up(7.0)
 
 func apply_consequences(name: String, paid: bool):
 	
@@ -76,3 +90,16 @@ func apply_consequences(name: String, paid: bool):
 	
 	if name == "grandma" and paid:
 		$EmailPile.fulfill_condition("grandma")
+	
+	if name == "neighbor" and not paid:
+		$EmailPile.fulfill_condition("deny_noise")
+	
+	if name == "electricity" and not paid:
+		$EmailPile.has_electricity = false
+	
+	if name == "neighbor" and paid:
+		$SVC/SV/Room/BGMusic.make_quiet()
+	
+	if name == "lottery" and paid:
+		if randf() < 0.05:
+			$EmailPile.fulfill_condition("win_lottery")

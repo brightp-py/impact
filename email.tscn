@@ -62,7 +62,7 @@ grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="Title Con" type="PanelContainer" parent="VBox"]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 theme = ExtResource("2_l5d43")
 theme_override_styles/panel = SubResource("StyleBoxTexture_6h618")
@@ -182,6 +182,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_ylg70")
 text = "Pay"
+
+[node name="Connection Con" type="PanelContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_l5d43")
+
+[node name="Heading" type="RichTextLabel" parent="VBox/Connection Con"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("5_vj7p1")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "No connection"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="VBox/Title Con/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="VBox/HBox/VBoxContainer/Choice Con/HBoxContainer/But_Delete" to="." method="but_delete_pressed"]
