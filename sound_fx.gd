@@ -7,3 +7,7 @@ func button_click():
 # On button hover play sound
 func button_hover():
 	$"Hover Button".play()
+
+# On button click play sound
+func button_coinClick():
+	$"Coin Click".play()

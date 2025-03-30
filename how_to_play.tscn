@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2u28jau1v81p"]
 
-[ext_resource type="FontFile" uid="uid://c3coh4qtm3y8" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="1_1ad62"]
+[ext_resource type="FontFile" uid="uid://dqt7q8mpykshj" path="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf" id="1_1ad62"]
 [ext_resource type="Script" uid="uid://ckky782gtphx1" path="res://how_to_play.gd" id="1_g0446"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0446"]
