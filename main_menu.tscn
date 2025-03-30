@@ -1,4 +1,10 @@
-[gd_scene format=3 uid="uid://bgnxlf746qi3i"]
+[gd_scene load_steps=4 format=3 uid="uid://bgnxlf746qi3i"]
+
+[ext_resource type="Script" uid="uid://yhrt0am7tg3o" path="res://main_menu.gd" id="1_06t4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rhts7"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -7,8 +13,78 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_06t4h")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 739.0
-offset_bottom = 326.0
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.244776, 0.244776, 0.244776, 0.313726)
+
+[node name="Button Con" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.5
+offset_top = -206.5
+offset_right = 175.5
+offset_bottom = 206.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_06t4h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button Con"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Play Button" type="Button" parent="Button Con/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Play"
+
+[node name="How to play Button" type="Button" parent="Button Con/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "How to Play"
+
+[node name="Controls Button" type="Button" parent="Button Con/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Controls
+"
+
+[node name="Exit Button" type="Button" parent="Button Con/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Exit"
+
+[node name="Title Con" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 194.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rhts7")
+
+[node name="Background" type="ColorRect" parent="Title Con"]
+layout_mode = 2
+color = Color(0.54099, 0.54099, 0.54099, 1)
+
+[node name="Label" type="Label" parent="Title Con"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 126
+text = "Scam Jam"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button Con/VBoxContainer/Play Button" to="." method="play_button_pressed"]
+[connection signal="pressed" from="Button Con/VBoxContainer/How to play Button" to="." method="how_to_play_button_pressed"]
+[connection signal="pressed" from="Button Con/VBoxContainer/Controls Button" to="." method="controls_button_pressed"]
+[connection signal="pressed" from="Button Con/VBoxContainer/Exit Button" to="." method="exit_button_pressed"]
